@@ -1,56 +1,49 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// import { ChakraProvider } from "@chakra-ui/react";
+// import { Provider } from "@/components/ui/provider"
 
 import BasicInfo from './Components/BasicInfo';
 import AdditionalQuestions from './Components/AdditionalQuestions';
 import EnteredDetails from './Components/EnteredDetails';
 import ThankYouPage from './Components/ThankYouPage';
 import About from './Components/About';
-// import Login from './authentication/login';
-// import Logout from './authentication/logout';
+import Login from './authentication/login';
+import Logout from './authentication/logout';
+import Intermediate from './Components/Intermediate';
+import MyUnis from './Components/MyUnis';
+// import 
+// import Example from './Components/CTAWithVideo';
 
 function App() {
-//   const initBasicData = JSON.parse(localStorage.getItem('data')) || {};
-//   const initQuestionsData = JSON.parse(localStorage.getItem('questiondata')) || {};
+  const [basicData, setBasicData] = useState({});
+  const [questionData, setQuestionData] = useState({});
 
-//   const [basicData, setBasicData] = useState(initBasicData);
-//   const [questionData, setQuestionData] = useState(initQuestionsData);
-
-const [basicData, setBasicData] = useState("");
-  const [questionData, setQuestionData] = useState("");
-
-//   useEffect(() => {
-//     localStorage.setItem('data', JSON.stringify(basicData));
-//   }, [basicData]);
-
-//   useEffect(() => {
-//     localStorage.setItem('questiondata', JSON.stringify(questionData));
-//   }, [questionData]);
-
-  const addBasicData = (name, email, contact) => {
-    const myBasicData = { name, email, contact };
+  const addBasicData = (name, email, contact, subjectGrade, course) => {
+    const myBasicData = { name, email, contact, subjectGrade, course };
     setBasicData(myBasicData);
-    // localStorage.setItem("data", JSON.stringify(myBasicData));
   };
 
   const addQuestionData = (profession, interest, reference) => {
     const myQuestionData = { profession, interest, reference };
     setQuestionData(myQuestionData);
-    // localStorage.setItem("questiondata", JSON.stringify(myQuestionData));
   };
 
-  return (
+  return ( 
     <Router>
       <Routes>
-        <Route path='/' element={<BasicInfo addBasicData={addBasicData} />} />
-        <Route path='/login' element={<ThankYouPage />} />
-        <Route path='/logout' element={<ThankYouPage />} />
-        <Route path='/questions' element={<AdditionalQuestions addQuestionData={addQuestionData} />} />
-        {/* Fix the typo: questiondData -> questionData */}
-        <Route path='/details' element={<EnteredDetails data={basicData} questionData={questionData} />} />
-        <Route path='/thanks' element={<ThankYouPage />} />
-        <Route path='/about' element={<About />} />
+        <Route path="/" element={<BasicInfo addBasicData={addBasicData} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/questions" element={<AdditionalQuestions addQuestionData={addQuestionData} />} />
+        <Route path="/details" element={<EnteredDetails data={basicData} questionData={questionData} />} />
+        <Route path="/thanks" element={<ThankYouPage />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/something" element={<Example />} /> */}
+        <Route path="/intermediate" element={<Intermediate />} /> 
+        <Route path="/myunis" element={<MyUnis />} />
       </Routes>
     </Router>
   );

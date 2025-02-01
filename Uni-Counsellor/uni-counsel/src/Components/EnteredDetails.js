@@ -1,15 +1,12 @@
-// EnteredDetails.js
-
 import { useNavigate } from 'react-router-dom';
 
 export default function EnteredDetails(props) {
   const navigate = useNavigate();
 
-  // Function to handle form submission
   const submit = () => {
-    console.log(props.data); // Log basicData object
-    console.log(props.questiondData); // Log questionData object
-    navigate('/thanks'); // Navigate to the thanks page
+    console.log(props.data); // Log basicData
+    console.log(props.questionData); // Log questionData
+    navigate('/thanks');
   };
 
   return (
@@ -20,42 +17,23 @@ export default function EnteredDetails(props) {
             <div className="card-body my-3">
               <h4>Entered Details</h4>
 
-              {/* Display basicData */}
-              <p>
-                <b>Name:</b> {props.data.name}
-              </p>
-              <p>
-                <b>Email:</b> {props.data.email}
-              </p>
-              <p>
-                <b>Contact No.:</b> {props.data.contact}
-              </p>
+              <p><b>Name:</b> {props.data.name}</p>
+              <p><b>Email:</b> {props.data.email}</p>
+              <p><b>Contact No.:</b> {props.data.contact}</p>
+              <p><b>Subject & Predicted Grade:</b> {props.data.subjectGrade}</p>
+              <p><b>Course:</b> {props.data.course}</p>
 
               <h4>Responses</h4>
+              <p><b>Profession:</b> {props.questionData.profession}</p>
+              <p><b>Interests:</b> {props.questionData.interest}</p>
+              <p><b>Reference:</b> {props.questionData.reference}</p>
 
-              {/* Display questionData */}
-              <p>
-                <b>Profession:</b> {props.questiondData.profession}
-              </p>
-              <p>
-                <b>Interests:</b> {props.questiondData.interest}
-              </p>
-              <p>
-                <b>Reference:</b> {props.questiondData.reference}
-              </p>
+              <button type="submit" onClick={submit} className="btn btn-success">Submit</button>
 
-              {/* Submit button */}
-              <button type="submit" onClick={submit} className="btn btn-success">
-                Submit
-              </button>
-
-              {/* Page numbers */}
               <center>
                 <span className="badge rounded-pill disabled">1</span>
                 <span className="badge rounded-pill disabled">2</span>
-                <span className="badge badge-pill bg-success">
-                  <b>3</b>
-                </span>
+                <span className="badge badge-pill bg-success"><b>3</b></span>
               </center>
             </div>
           </div>

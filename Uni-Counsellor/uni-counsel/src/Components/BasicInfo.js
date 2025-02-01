@@ -1,30 +1,24 @@
-// BasicInfo.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function BasicInfo({ addBasicData }) {
-  // State variables to store user input
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
-  
-  // Navigation function for programmatic routing
+  const [subjectGrade, setSubjectGrade] = useState(""); // New field
+  const [course, setCourse] = useState(""); // New field
+
   const navigate = useNavigate();
 
-  // Function to handle form submission
   const submit = (e) => {
     e.preventDefault();
-    if (!name || !email || !contact) {
-      // Alert if any field is missing
-      alert("All fields necessary!");
+    if (!name || !email || !contact || !subjectGrade || !course) {
+      alert("All fields are necessary!");
     } else {
-      // Call the addBasicData function provided by the parent component
-      addBasicData(name, email, contact);
-      // Navigate to the '/questions' route
-      navigate('/questions');
+      addBasicData(name, email, contact, subjectGrade, course);
+      navigate('/login');
     }
-  }
+  };
 
   return (
     <div className="container-fluid qform">
@@ -33,59 +27,36 @@ export default function BasicInfo({ addBasicData }) {
           <div className="card text-left h-100">
             <div className="card-body my-3">
               <form onSubmit={submit}>
-                <label htmlFor="">
-                  <h4>Basic Details</h4>
-                </label>
+                <h4>Basic Details</h4>
+
                 <div className="form-group my-3">
-                  <label htmlFor="">
-                    <b>1.</b> Name
-                  </label>
-                  {/* Input field for name */}
-                  <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(e) => { setName(e.target.value) }}
-                    className='form-control my-2'
-                    placeholder='Enter your Name'
-                    autoComplete='off'
-                  />
+                  <label><b>1.</b> Name</label>
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control my-2" placeholder="Enter your Name" />
                 </div>
+
                 <div className="form-group my-3">
-                  <label htmlFor="">
-                    <b>2.</b> Email
-                  </label>
-                  {/* Input field for email */}
-                  <input
-                    type="email"
-                    name='email'
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value) }}
-                    className='form-control my-2'
-                    placeholder='Enter your Email'
-                    autoComplete='off'
-                  />
+                  <label><b>2.</b> Email</label>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control my-2" placeholder="Enter your Email" />
                 </div>
+
                 <div className="form-group my-3">
-                  <label htmlFor="">
-                    <b>3.</b> Contact No.
-                  </label>
-                  {/* Input field for contact number */}
-                  <input
-                    type="tel"
-                    name='contact'
-                    value={contact}
-                    onChange={(e) => { setContact(e.target.value) }}
-                    className='form-control my-2'
-                    placeholder='Enter your Contact No.'
-                    autoComplete='off'
-                  />
-                  
+                  <label><b>3.</b> Contact No.</label>
+                  <input type="tel" value={contact} onChange={(e) => setContact(e.target.value)} className="form-control my-2" placeholder="Enter your Contact No." />
                 </div>
-                {/* Submit button */}
-                <button type='submit' className='btn btn-success mx-3'>Next</button>
+
+                <div className="form-group my-3">
+                  <label><b>4.</b> Subject & Predicted Grade</label>
+                  <input type="text" value={subjectGrade} onChange={(e) => setSubjectGrade(e.target.value)} className="form-control my-2" placeholder="Enter Subject & Predicted Grade" />
+                </div>
+
+                <div className="form-group my-3">
+                  <label><b>5.</b> Course</label>
+                  <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} className="form-control my-2" placeholder="Enter Course" />
+                </div>
+
+                <button type="submit" className="btn btn-success mx-3">Next</button>
               </form>
-              {/* Step indicators */}
+
               <center>
                 <span className="badge badge-pill bg-success"><b>1</b></span>
                 <span className="badge rounded-pill disabled">2</span>
@@ -96,5 +67,5 @@ export default function BasicInfo({ addBasicData }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
