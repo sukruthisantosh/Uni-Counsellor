@@ -7,8 +7,6 @@ const Intermediate = () => {
   const location = useLocation();
   const responseData = location.state?.responseData || "No data received";
 
-  alert(responseData)
-
   const queryParams = new URLSearchParams(location.search);
   const nextPage =
     queryParams.get("next") === "additional-questions"

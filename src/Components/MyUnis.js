@@ -1,15 +1,15 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import axios from "axios"; // Import axios
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const MyUnis = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   let responseData = location.state?.responseData || {};
 
   console.log("Received responseData:", responseData);
 
-  // Ensure responseData is an object, not a stringified JSON
   if (typeof responseData === "string") {
     try {
       responseData = JSON.parse(responseData);
@@ -21,23 +21,21 @@ const MyUnis = () => {
 
   const universities = responseData.universities || [];
 
-  // Function to handle button click and send data to the API
   const handleLearnMoreClick = async (uni) => {
-    const apiUrl = `127.0.0.2:8080/?${queryParams}`; // Replace with your actual API endpoint
+    const apiUrl = `127.0.0.1:8080/add/joke/${uni.name}`;
     
     try {
       const requestData = {
         "name": 'wha',
         "university": uni.name,
-        // You can add any additional information you need to send
       };
       
-      const response = await axios.put(apiUrl, requestData);
+      const response = await axios.get(apiUrl);
       console.log("Data successfully sent:", response.data);
       alert("University info sent successfully!");
     } catch (error) {
       console.error("Error sending data:", error);
-      alert("There was an error sending the university data.");
+      // alert("There was an error sending the university data.");
     }
   };
 
@@ -58,9 +56,9 @@ const MyUnis = () => {
                   <button 
                     className="btn btn-sm" 
                     style={{ backgroundColor: "#8B5E3C", color: "white" }}
-                    onClick={() => handleLearnMoreClick(uni)} // Add onClick handler here
+                    onClick={() => handleLearnMoreClick(uni)}
                   >
-                    Learn More
+                    Add To Wish
                   </button>
                 </div>
               </div>
@@ -70,6 +68,16 @@ const MyUnis = () => {
       ) : (
         <p className="text-center text-muted fs-5">No university data available.</p>
       )}
+      
+      <div className="text-center mt-4">
+        <button 
+          className="btn btn-lg" 
+          style={{ backgroundColor: "#6D4C41", color: "white" }}
+          onClick={() => navigate("/intermediate", { state: { responseData: responseData } })}
+        >
+          Back to Intermediate
+        </button>
+      </div>
     </div>
   );
 };

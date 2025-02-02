@@ -14,6 +14,10 @@ cur.execute("CREATE TABLE IF NOT EXISTS student(studentName VARCHAR, universityI
 uniIndex = 1
 
 def addStudent(name: str, uniName: str):
+    cur.execute(f"SELECT studentName FROM student WHERE studentName - ?", (name, ))
+    if cur.fetchone() is None:
+        cur.execute("INSERT INTO student VALUES (?, ?)", (name, 1))
+        return
     cur.execute("SELECT universityID FROM university WHERE universityName = ?", (uni,))
     row = cur.fetchone()
     if row is None:
@@ -38,7 +42,7 @@ def deleteUni(sName: str, uniName: str):
     con.commit()
 
 
-@app.route("/add/<student_name>/<university_name>")
+@app.route("/add/<student_name>/<university_name>", methods = ["GET"])
 def add_route(student_name, university_name):
     """
     Example: /add/John/Harvard
@@ -46,6 +50,7 @@ def add_route(student_name, university_name):
     - If 'Harvard' doesn't exist, it creates it first.
     - Returns a simple message.
     """
+    
     addStudent(student_name, university_name)
 
 @app.route("/list/<student_name>")
@@ -60,7 +65,7 @@ def list_universities_for_student(student_name):
 
 if __name__ == "__main__":
     # Note: "127.0.0.2" is just another loopback address
-    app.run(host="127.0.0.2", port=8080, debug=True)
+    app.run(host="/", port=8080, debug=True)
 
 
 # server_ip = "127.0.0.2"

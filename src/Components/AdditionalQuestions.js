@@ -4,12 +4,12 @@ import axios from 'axios';  // ✅ Import Axios
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SignUp = () => {
-  const [name, setName] = useState('wh');
-  const [email, setEmail] = useState('wha@gmail.com');
-  const [contact, setContact] = useState('q');
-  const [subjectGrade, setSubjectGrade] = useState('d');
-  const [course, setCourse] = useState('w');
-  const [country, setCountry] = useState('a');
+  const [name, setName] = useState('Nandita');
+  const [email, setEmail] = useState('nsb@gmail.com');
+  const [contact, setContact] = useState('+441234567');
+  const [subjectGrade, setSubjectGrade] = useState('Computer Science A');
+  const [course, setCourse] = useState('Computing');
+  const [country, setCountry] = useState('UK');
   const [tuitionFee, setTuitionFee] = useState('e');
   const [accommodationProvided, setAccommodationProvided] = useState('7');
   const [priceOfAccommodation, setPriceOfAccommodation] = useState('8');
@@ -25,15 +25,15 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !name || !email || !contact || !subjectGrade || !course || !country ||
-      !tuitionFee || !accommodationProvided || !priceOfAccommodation || !studentRatio ||
-      !qsRankings || !languageOfInstruction || !entryRequirements || !location ||
-      !scholarshipOpportunities || !campusFacilities
-    ) {
-      alert("All fields are necessary!");
-      return;
-    }
+    // if (
+    //   !name || !email || !contact || !subjectGrade || !course || !country ||
+    //   !tuitionFee || !accommodationProvided || !priceOfAccommodation || !studentRatio ||
+    //   !qsRankings || !languageOfInstruction || !entryRequirements || !location ||
+    //   !scholarshipOpportunities || !campusFacilities
+    // ) {
+    //   alert("All fields are necessary!");
+    //   return;
+    // }
 
     const dataToSend = {
       name, email, contact, subjectGrade, course, country, tuitionFee, accommodationProvided,
@@ -52,9 +52,7 @@ const SignUp = () => {
         headers: { 'Content-Type': 'application/json' }
       })
       response = response.data;
-      alert(response);
       // ✅ Show response in alert
-      alert(JSON.stringify(response, null, 2));
 
       // ✅ Navigate to Intermediate page with response data
       navigate("/intermediate", { state: { responseData: response } });
@@ -64,8 +62,8 @@ const SignUp = () => {
 
       // ✅ Use fallback response for testing
       const fallbackResponse = "{\n  \"universities\": [\n    {\n      \"name\": \"University of Cambridge\",\n      \"description\": \"World-renowned for physics research with state-of-the-art facilities. Strong collegiate system provides excellent accommodation and vibrant social life. Home to many Nobel laureates in Physics.\"\n    },\n    {\n      \"name\": \"University of Oxford\",\n      \"description\": \"Outstanding physics department with cutting-edge research opportunities. Historic college system offers guaranteed accommodation and active social scene. Strong emphasis on theoretical and experimental physics.\"\n    },\n    {\n      \"name\": \"Imperial College London\",\n      \"description\": \"Located in central London with exceptional physics research facilities. Strong industry connections and modern accommodation options. Dynamic student life with numerous societies and activities.\"\n    },\n    {\n      \"name\": \"University of Manchester\",\n      \"description\": \"Home to the National Graphene Institute and excellent physics research. Guaranteed accommodation for first-years and vibrant city life. Strong emphasis on both theoretical and applied physics.\"\n    },\n    {\n      \"name\": \"University College London\",\n      \"description\": \"Prestigious physics department in the heart of London. Modern accommodation options and diverse student community. Strong research focus with excellent laboratory facilities.\"\n    },\n    {\n      \"name\": \"University of Edinburgh\",\n      \"description\": \"Historic university with modern physics facilities. Guaranteed accommodation for first-years and fantastic student life in a beautiful city. Strong research output in theoretical physics and astronomy.\"\n    },\n    {\n      \"name\": \"University of Bristol\",\n      \"description\": \"Known for excellent physics research and teaching. Multiple accommodation options in a vibrant student city. Strong focus on quantum physics and nanoscience.\"\n    },\n    {\n      \"name\": \"Durham University\",\n      \"description\": \"College system with guaranteed accommodation and strong community feel. Excellent physics department with high research output. Beautiful historic city with active student social scene.\"\n    },\n    {\n      \"name\": \"University of Warwick\",\n      \"description\": \"Modern campus with excellent physics facilities and research opportunities. Guaranteed accommodation and active student union. Strong emphasis on theoretical physics and mathematical modeling.\"\n    },\n    {\n      \"name\": \"University of Birmingham\",\n      \"description\": \"Large physics department with strong research profile. Guaranteed first-year accommodation on beautiful campus. Vibrant student life with numerous societies and sports clubs.\"\n    }\n  ]\n}";
-      
-      alert(JSON.stringify(fallbackResponse, null, 2));
+
+      // alert(JSON.stringify(fallbackResponse, null, 2));
       navigate("/myunis", { state: { responseData: fallbackResponse } });
     }
   };
