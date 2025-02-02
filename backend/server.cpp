@@ -58,6 +58,7 @@ int main() {
 
 
     nlohmann::json w;
+    std:: cout << "ily\n" << h << "\n";
     w = nlohmann::json::parse(h.substr(0, h.find('\n')));
     std::cout << w.dump(4) << std::endl;
     
@@ -67,16 +68,19 @@ int main() {
         std::cout << "hehe jmao\n";
         exit(-1);
     }
+    std::cout << "hello\n";
 
     CURLcode js;
     curl_easy_setopt(g, CURLOPT_URL, "https://api.anthropic.com/v1/messages");
-    
+    std::cout << "hello\n";
+
 
     std::string api_key_header = "x-api-key: " + D_API_KEY;
     struct curl_slist *headers = nullptr;
     headers = curl_slist_append(headers, api_key_header.c_str());
     headers = curl_slist_append(headers, "anthropic-version: 2023-06-01");
     headers = curl_slist_append(headers, "content-type: application/json");
+    std::cout << "hello\n";
 
 
     curl_easy_setopt(g, CURLOPT_HTTPHEADER, headers);
@@ -85,11 +89,12 @@ int main() {
     json r;
     r["model"] = "claude-3-5-sonnet-20241022";
     r["max_tokens"] = 1024; 
-    std::string content = "Give me a list of 20 colleges (universities) using this data submitted by a user, give me the names and descriptions of each university (around 2 to 3 lines) in JSON Format only i dont want anything else please! " + w.dump();
+    std::string content = "Give me a list of 10 colleges (universities) using this data submitted by a user, give me the names and descriptions of each university (around 2 to 3 lines) in JSON Format only i dont want anything else please! " + w.dump();
     // Set up the messages as an array of objects
     r["messages"] = json::array();
     r["messages"].push_back({ {"role", "user"}, {"content", content} });
-    
+    std::cout << "hello\n";
+
     std::string payload = r.dump();
     std::cout << "Sending payload:\n" << payload << std::endl;
 
@@ -108,6 +113,7 @@ int main() {
     } else {
         std::cout << "Response from API:\n" << json::parse(response_string)["content"][0]["text"] << "\n";
     }
+    
 
     send(fd2, json::parse(response_string)["content"][0]["text"].dump().c_str(), json::parse(response_string)["content"][0]["text"].dump().size(), 0);
     
