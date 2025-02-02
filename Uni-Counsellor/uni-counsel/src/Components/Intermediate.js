@@ -1,34 +1,36 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Intermediate = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const nextPage = queryParams.get("next") === "additional-questions" ? "/additional-questions" : "/questions";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const responseData = location.state?.responseData || "No data received";
 
-    return (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-            <h1>Intermediate Page</h1>
-            <p>You have successfully logged in!</p>
+  const queryParams = new URLSearchParams(location.search);
+  const nextPage =
+    queryParams.get("next") === "additional-questions"
+      ? "/additional-questions"
+      : "/questions";
 
-            <div style={{ marginTop: "20px" }}>
-                <button 
-                    style={{ margin: "10px", padding: "10px 20px", fontSize: "16px" }} 
-                    onClick={() => navigate(nextPage)}
-                >
-                    Go to Questionnaire
-                </button>
+  return (
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card shadow p-4 text-center" style={{ width: "28rem" }}>
+        <h1 className="fw-bold mb-3">Welcome!</h1>
+        <p className="text-muted fs-5">You have successfully logged in.</p>
 
-                <button 
-                    style={{ margin: "10px", padding: "10px 20px", fontSize: "16px" }} 
-                    onClick={() => navigate("/myUnis")}
-                >
-                    Go to My Unis
-                </button>
-            </div>
+        <div className="d-grid gap-3 mt-4">
+          <button className="btn btn-primary btn-lg" onClick={() => navigate(nextPage)}>
+            Go to Questionnaire
+          </button>
+
+          <button className="btn btn-success btn-lg" onClick={() => navigate("/myUnis")}>
+            Go to My Unis
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Intermediate;
