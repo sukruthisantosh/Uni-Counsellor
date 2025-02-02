@@ -7,6 +7,8 @@ const Intermediate = () => {
   const location = useLocation();
   const responseData = location.state?.responseData || "No data received";
 
+  alert(responseData)
+
   const queryParams = new URLSearchParams(location.search);
   const nextPage =
     queryParams.get("next") === "additional-questions"
@@ -24,8 +26,12 @@ const Intermediate = () => {
             Go to Questionnaire
           </button>
 
-          <button className="btn btn-success btn-lg" onClick={() => navigate("/myUnis")}>
-            Go to My Unis
+          <button className="btn btn-primary btn-lg" onClick={() => navigate("/myUnis", { state: { responseData } })}>
+            Go to My Results
+          </button>
+
+          <button className="btn btn-primary btn-lg" onClick={() => navigate("/uniWishList", { state: { responseData } })}>
+            Go to My Uni Wish List
           </button>
         </div>
       </div>

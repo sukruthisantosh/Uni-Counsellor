@@ -6,15 +6,12 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contact, setContact] = useState('');
-  const [subjectGrade, setSubjectGrade] = useState('');
-  const [course, setCourse] = useState('');
-  const [country, setCountry] = useState('');
   
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email || !contact || !subjectGrade || !course || !country) {
+    if (!name || !email || !contact) {
       alert("All fields are necessary!");
     } else {
       // Handle form submission here
@@ -65,45 +62,6 @@ const SignUp = () => {
                   onChange={(e) => setContact(e.target.value)}
                   className="form-control"
                   placeholder="Enter your contact number"
-                  required
-                />
-              </div>
-
-              <div className="form-group mb-3">
-                <label htmlFor="subjectGrade" className="form-label"><b>Subject & Predicted Grade</b></label>
-                <input
-                  type="text"
-                  id="subjectGrade"
-                  value={subjectGrade}
-                  onChange={(e) => setSubjectGrade(e.target.value)}
-                  className="form-control"
-                  placeholder="Enter your subject & predicted grade"
-                  required
-                />
-              </div>
-
-              <div className="form-group mb-3">
-                <label htmlFor="course" className="form-label"><b>Course</b></label>
-                <input
-                  type="text"
-                  id="course"
-                  value={course}
-                  onChange={(e) => setCourse(e.target.value)}
-                  className="form-control"
-                  placeholder="Enter your desired course"
-                  required
-                />
-              </div>
-
-              <div className="form-group mb-3">
-                <label htmlFor="country" className="form-label"><b>Country</b></label>
-                <input
-                  type="text"
-                  id="country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className="form-control"
-                  placeholder="Enter your country"
                   required
                 />
               </div>

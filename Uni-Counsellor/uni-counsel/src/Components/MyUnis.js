@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios"; // Import axios
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const MyUnis = () => {
@@ -20,6 +21,26 @@ const MyUnis = () => {
 
   const universities = responseData.universities || [];
 
+  // Function to handle button click and send data to the API
+  const handleLearnMoreClick = async (uni) => {
+    const apiUrl = `127.0.0.2.9999/?${queryParams}`; // Replace with your actual API endpoint
+    
+    try {
+      const requestData = {
+        name: uni.name,
+        description: uni.description,
+        // You can add any additional information you need to send
+      };
+      
+      const response = await axios.put(apiUrl, requestData);
+      console.log("Data successfully sent:", response.data);
+      alert("University info sent successfully!");
+    } catch (error) {
+      console.error("Error sending data:", error);
+      alert("There was an error sending the university data.");
+    }
+  };
+
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4" style={{ color: "#6D4C41" }}>🎓 My Universities</h1>
@@ -37,6 +58,7 @@ const MyUnis = () => {
                   <button 
                     className="btn btn-sm" 
                     style={{ backgroundColor: "#8B5E3C", color: "white" }}
+                    onClick={() => handleLearnMoreClick(uni)} // Add onClick handler here
                   >
                     Learn More
                   </button>

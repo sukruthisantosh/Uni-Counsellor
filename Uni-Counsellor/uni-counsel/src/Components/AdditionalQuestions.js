@@ -62,7 +62,7 @@ const SignUp = () => {
       const fallbackResponse = "{\n\"universities\": [\n {\n \"name\": \"University of Tokyo\",\n \"description\": \"Japan's top research university with renowned biology programs and state-of-the-art facilities. Known for groundbreaking research in molecular biology and biotechnology, offering programs in both Japanese and English.\"\n },\n {\n \"name\": \"Kyoto University\",\n \"description\": \"Prestigious institution famous for its life sciences research and biology department. Features extensive laboratory facilities and collaborations with international research centers, particularly strong in cellular biology.\"\n },\n {\n \"name\": \"Osaka University\",\n \"description\": \"Leading university in biological sciences with cutting-edge research facilities. Offers specialized programs in biomedical sciences and molecular biology, with strong industry connections and research opportunities.\"\n },\n {\n \"name\": \"Tohoku University\",\n \"description\": \"Renowned for its biological research and modern laboratory facilities. Specializes in environmental biology and biotechnology, offering numerous international research collaborations and exchange programs.\"\n },\n {\n \"name\": \"Nagoya University\",\n \"description\": \"Distinguished for its biology department and research in life sciences. Features excellent facilities for biological research and offers various specialized programs in molecular and cellular biology with international focus.\"\n }\n]\n}"
 
       alert(JSON.stringify(fallbackResponse, null, 2));
-      navigate("/intermediate", { state: { responseData: fallbackResponse } });
+      navigate("/myunis", { state: { responseData: fallbackResponse } });
     }
   };
 

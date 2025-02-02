@@ -11,6 +11,7 @@ import Login from './authentication/login';
 import Logout from './authentication/logout';
 import Intermediate from './Components/Intermediate';
 import MyUnis from './Components/MyUnis';
+import UniWishList from './Components/UniWishList';
 
 function App() {
   const [basicData, setBasicData] = useState({});
@@ -67,6 +68,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/intermediate" element={<Intermediate />} /> 
         <Route path="/myunis" element={<MyUnis />} />
+        <Route path="/uniWishList" element={<UniWishList />} />
       </Routes>
     </Router>
   );
