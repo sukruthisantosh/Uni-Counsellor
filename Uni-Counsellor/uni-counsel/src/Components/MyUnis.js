@@ -23,12 +23,12 @@ const MyUnis = () => {
 
   // Function to handle button click and send data to the API
   const handleLearnMoreClick = async (uni) => {
-    const apiUrl = `127.0.0.2.9999/?${queryParams}`; // Replace with your actual API endpoint
+    const apiUrl = `127.0.0.2:8080/?${queryParams}`; // Replace with your actual API endpoint
     
     try {
       const requestData = {
-        name: uni.name,
-        description: uni.description,
+        "name": 'wha',
+        "university": uni.name,
         // You can add any additional information you need to send
       };
       
